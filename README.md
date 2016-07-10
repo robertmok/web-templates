@@ -7,3 +7,8 @@ temp1.html
 temp2.html
 - responsive side menu to top menu to mobile friendly menu
 - two column website
+
+temp3.html
+- sidebar menu with fixed height
+- side dropdown
+- not responsive
