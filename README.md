@@ -30,3 +30,9 @@ temp5.html
 - responsive 3 column flexbox ordering 
 - image opacity on hover
 - responsive 3 column section to 1 column section  
+
+temp6.html
+- custom 5 panel website
+- responsive
+- mobile friendly
+- 5 panel horizontally changed to 1 large panel with 4 mini panels underneath then changed to 1 large panel with 2 by 2 mini panel underneath and finally changed to 5 panels vertically
