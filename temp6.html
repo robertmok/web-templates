@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+    box-sizing: border-box;
+}
+
+h2 { 
+    text-align: center;
+}
+
+#contain {
+    width: 80%;
+    margin: auto;
+    padding: 5px;
+    background-color: green;
+    overflow:hidden;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+#panels {
+    width: 20%;
+    float: left;
+    background-color: lightblue;
+    padding: 10px;
+    border: 10px solid yellow;
+}
+
+#next {
+    clear: both;
+}
+
+@media only screen and (max-width: 1000px){
+     div#panels:first-child {
+         width: 100%;
+     }
+     #panels {
+         width: 24.99999%;
+     }
+}
+
+@media only screen and (max-width: 800px){
+     div#panels:first-child {
+         width: 100%;
+     }
+     #panels {
+         width: 50%;
+     }
+}
+
+@media only screen and (max-width: 500px){
+    #panels {
+         width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+<h2>Custom 5 Panel Layout</h2>
+
+<div id="contain"> 
+
+<div id="panels">
+<img src="https://pbs.twimg.com/profile_images/993504415/css_400x400.png" alt="css">
+<p> PANEL 1: place panel desciption here.... </p>
+</div>
+
+<div id="panels">
+<img src="https://pbs.twimg.com/profile_images/993504415/css_400x400.png" alt="css">
+<p> PANEL 2: place panel desciption here.... </p>
+</div>
+
+<div id="panels">
+<img src="https://pbs.twimg.com/profile_images/993504415/css_400x400.png" alt="css">
+<p> PANEL 3: place panel desciption here.... </p>
+</div>
+
+<div id="panels">
+<img src="https://pbs.twimg.com/profile_images/993504415/css_400x400.png" alt="css">
+<p> PANEL 4: place panel desciption here.... </p>
+</div>
+
+<div id="panels">
+<img src="https://pbs.twimg.com/profile_images/993504415/css_400x400.png" alt="css">
+<p> PANEL 5: place panel desciption here.... </p>
+</div>
+
+</div>
+
+<div id="next">
+<p> next section. put something here ... </p>
+</div>
+
+
+</body>
+</html>
+
