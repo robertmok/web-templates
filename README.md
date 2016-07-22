@@ -36,3 +36,8 @@ temp6.html
 - responsive
 - mobile friendly
 - 5 panel horizontally changed to 1 large panel with 4 mini panels underneath then changed to 1 large panel with 2 by 2 mini panel underneath and finally changed to 5 panels vertically
+
+temp7.html
+- adding onto temp6.html
+- custom responsive elements inside panel
+- same height responsive panels
