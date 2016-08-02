@@ -1,6 +1,5 @@
 # web-templates
 Templates Live Demo: https://robertmok.github.io/web-templates/
------------
 
 temp1.html
 - responsive images with caption overlay
