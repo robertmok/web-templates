@@ -56,3 +56,14 @@
 - adding onto temp6.html
 - custom responsive elements inside panel
 - same height responsive panels
+
+---
+
+**temp8.html**
+- Javascript DOM
+- using only javascript, no jQuery
+- use AJAX to read in external JSON data file
+- custom javscript functions dealing with DOM
+- compare and remove duplicate function from json
+- count the amount of each type and use it in progress bar
+- add the specified elements from JSON data when clicked on a type in the menu
