@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+    body {
+        width: 80%;
+        margin: auto;
+    }
+    
+    h1 {
+        text-align: center;
+    }
+    
+    nav {
+        text-align: center;
+        background-color: #f3f3f3;
+        border: 1px solid #e7e7e7;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;                
+        padding: 0;                
+        display: inline-block;   
+        
+    }
+    
+    li {
+        float: left;   
+    }
+
+    li p {
+        padding: 10px 40px;
+    }
+
+    section#progress {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    progress {
+        width: 100%;
+    }
+    
+    section#demo {
+        margin-left: 15%;
+    }
+    
+</style>
+
+<script>
+var xmlhttp = new XMLHttpRequest();    
+function getData() {
+    xmlhttp.onreadystatechange = function() {
+        //console.log(xmlhttp.status); testing 
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 0) { //200
+            console.log(xmlhttp.readyState);
+            var myData = JSON.parse(xmlhttp.responseText);
+            console.log("Total Data: " + myData.data.length);
+            localStorage.setItem("appData", xmlhttp.responseText);
+            calc();
+        }
+    };
+    xmlhttp.open("GET", "data.json", true);
+    xmlhttp.send();
+}
+
+function calc(){
+    var myData = JSON.parse(localStorage.appData);
+    console.log("Retrieve Data: " + myData.data.length);
+    var arr = [];
+    var x, y, element, count;
+    //Remove Duplicates
+    for(x = 0; x < myData.data.length; x++) {
+        //console.log(myData.data[x].title); test
+        element = myData.data[x].title.toLowerCase();
+        if(arr.indexOf(element) === -1 ){
+            arr.push(element);
+        } 
+        console.log(arr);
+    }
+    localStorage["array"] = JSON.stringify(arr);
+    
+    //Calculate amount of each title
+    count = 0;
+    for(x = 0; x < arr.length; x++){
+        for (y = 0; y < myData.data.length; y++){
+            element = myData.data[y].title.toLowerCase();
+            if(arr[x] == element){
+                count++;
+            }
+        }
+        console.log(arr[x] + ": " + count);
+        localStorage.setItem(arr[x], count);
+        count = 0;
+    }
+    console.log("Html Stored: " + localStorage.html); //testing
+    
+    
+}
+    
+getData();
+
+</script>
+</head>
+    
+<body>
+    
+<h1> Javascript DOM </h1>    
+<nav>
+<ul>
+    <li><p id = "html">HTML</p></li>
+    <li><p id = "css">CSS</p></li>
+    <li><p id = "ajax">AJAX</p></li>
+    <li><p id = "javascript">Javascript</p></li>
+    <li><p id = "all">All</p></li>
+</ul>    
+</nav>
+
+<section id="progress"> 
+    
+</section>
+
+<hr>
+    
+<section id="demo">
+    
+</section>   
+    
+
+<script>
+ function clickmenu() {
+     var menuItems = document.getElementsByTagName("li");
+     var i;
+      console.log("Menu Items: " + menuItems.length);
+     for (i = 0; i < menuItems.length; i++) {
+         menuItems[i].addEventListener("click", display);
+     }
+     
+ }   
+    
+function display() {
+    //var ev = event.target; testing
+    //document.getElementById("demo").innerHTML += "clicked " + ev.tagName + "! "; testing
+    var item = event.target.id;
+    console.log("Item Clicked: " + item);
+    var myData = JSON.parse(localStorage.appData);
+    console.log("Data Retrieved: " + myData.data.length);
+    
+    var i;
+    var insert = "<div>";
+    document.getElementById("demo").innerHTML = "";
+    if (item == "all"){
+        for(i = 0; i < myData.data.length; i++){
+            insert += "<h2>" + myData.data[i].title + "</h2> <p>" + myData.data[i].fact + "</p> <br>";  
+        }
+        insert += "</div>";
+        document.getElementById("demo").innerHTML = insert;
+    } else {
+        for(i = 0; i < myData.data.length; i++){
+            if (item == myData.data[i].title.toLowerCase()){
+                insert += "<h2>" + myData.data[i].title + "</h2> <p>" + myData.data[i].fact + "</p> <br>"; 
+            }
+        }
+        insert += "</div>";
+        document.getElementById("demo").innerHTML = insert;
+    }
+}    
+    
+function loadbar() {
+    var arr = JSON.parse(localStorage["array"]);
+    console.log("Loadbar Array Retrieved: " + arr);
+    //console.log(arr[0]); testing
+    var i;
+    var insert = "<div>";
+    var amount;
+    var item;
+    for(i = 0; i < arr.length; i++){
+        item = arr[i];
+        amount = localStorage.getItem(item);
+        console.log(amount);
+        insert += "<h2>" + arr[i] + "</h2> <progress value='" + amount + "' max='5'> </progress> <div>" + amount + "/5 </div> <br>";
+    }
+    insert += "</div>";
+    document.getElementById("progress").innerHTML = insert;
+}
+    
+    
+clickmenu();
+loadbar();
+    
+</script>
+    
+</body>
+</html>

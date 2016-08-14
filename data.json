@@ -1,0 +1,32 @@
+{
+"data":[
+    {
+    "title":"html",
+    "fact":"html data 1"
+    },
+    {
+    "title":"HTML",
+    "fact":"html data 2"
+    },
+    {
+    "title":"css",
+    "fact":"css data 1"
+    },
+    {
+    "title":"Css",
+    "fact":"css data 2"
+    },
+    {
+    "title":"cSs",
+    "fact":"css data 3"
+    },
+    {
+    "title":"AJAX",
+    "fact":"ajax data 1"
+    },
+    {
+    "title":"Javascript",
+    "fact":"javascript data 1"
+    }
+    ]
+}
