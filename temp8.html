@@ -54,7 +54,7 @@ var xmlhttp = new XMLHttpRequest();
 function getData() {
     xmlhttp.onreadystatechange = function() {
         //console.log(xmlhttp.status); testing 
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 0) { //200
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) { //0 for no server
             console.log(xmlhttp.readyState);
             var myData = JSON.parse(xmlhttp.responseText);
             console.log("Total Data: " + myData.data.length);
