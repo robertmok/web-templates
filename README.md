@@ -67,3 +67,12 @@
 - compare and remove duplicate function from json
 - count the amount of each type and use it in progress bar
 - add the specified elements from JSON data when clicked on a type in the menu
+
+---
+
+**temp9.html**
+- Javascript + jQuery 
+- similar copy of temp8.html but it is not just pure javascript
+- some javascript code is replaced with jQuery
+- Ex. AJAX using jQuery, etc ... 
+
