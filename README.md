@@ -1,4 +1,6 @@
 # web-templates
+
+A list of different rough web templates for testing and exploring.
 ##Templates Live Demo: https://robertmok.github.io/web-templates/
 
 ---
