@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+    body {
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    table {
+        width:100%;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        overflow: hidden;
+        height: 100%;
+    }
+
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+
+    td {
+       border-left: none;
+       border-right: none;
+       width: 33.3%; /* equal column width */
+    }
+
+    /* side button */
+    #expand, #expand2 {
+       float: left;
+       margin-right: 10px;
+       height: 100%;
+    }
+
+    #data {
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding: 20px;
+        height: 100%; /* same data height in row */
+    }
+
+    /* first data field */
+    #dataf {
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+        padding: 20px;
+        margin-left: 40px;
+        height: 100%;
+    }
+
+    /* container for side button */
+    #contain {
+        height: 100%;
+        float: left;
+    }    
+    
+    /* side button full height */
+    #fullheight {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+    }
+
+    #field1, #field2, #field3 {
+        width: 30%;
+        border: 1px solid #73AD21;
+        border-radius: 15px;
+        padding: 10px;
+        margin: 5px;
+        float: left;
+    }
+    
+    #field3 img {
+        width: 100%;
+        height: auto;
+    }
+    
+    /* input box 1 */
+    #boxlen {
+        width: 80%;
+    }
+    /* input box 2 */
+    #boxlen2 {
+        width: 28%;
+    }
+    
+    /* validation invalid color */
+    input:required:invalid, input:focus:invalid {
+        background-color: yellow;
+    }
+
+    /* date picker placed in center */
+    #datecontain {
+        text-align: center;
+    }
+    /* date picker wrapper to use text-align center */
+    #picker {
+        display:inline-block;
+        margin:0 auto;
+    }
+
+/*------------------------------------*/
+
+    ul.tab {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        border: 0px solid white;
+        background-color: white;
+    }
+
+    /* Float the list items side by side */
+    ul.tab li {
+        float: left;
+        border: 1px solid black;
+        border-bottom: none;
+        border-radius: 15px 15px 0px 0px;
+        text-align: center;
+        display: block;
+        width: 12%;
+        background-color: white;
+    }
+
+    /* Style the links inside the list items */
+    ul.tab li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: 0.3s;
+        font-size: 17px;
+        word-wrap: break-word;
+    }
+
+    /* Change background color of links on hover */
+    ul.tab li a:hover {
+        background-color: #ddd;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    /* Create an active/current tablink class */
+    ul.tab li a:focus, .active {
+        background-color: #ccc;
+        border-radius: 15px 15px 0px 0px;
+    }
+
+    /* Style the tab content */
+    .tabcontent, .tabcontent2 {
+        border: 1px solid black;
+        border-radius: 0px 10px 10px 10px;
+        display: none;
+        padding: 6px 12px;
+        -webkit-animation: fadeEffect 1s;
+        animation: fadeEffect 1s;
+        overflow:hidden;
+    }
+
+    @-webkit-keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    @keyframes fadeEffect {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+
+    #tabinfo, #tabinfo2 {
+       display: none;
+        -webkit-animation: fadeEffect 1s;
+        animation: fadeEffect 1s;
+    }
+    
+</style>
+
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> --> 
+<script>
+$(document).ready(function(){
+    $("#expand").click(function() {
+          $("#tabinfo").toggle();
+       /*
+          if ($("#expand").html() == "<h1>&#9656;</h1>") 
+            { 
+                $("#expand").html("<h1>&#9660;</h1>"); 
+                console.log("if");
+            } 
+            else 
+            { 
+                console.log($("#expand").html() == "<h1>&#9656;</h1>");
+                $("#expand").html("<h1>&#9660;</h1>"); 
+            }; */
+    });
+    $("#expand2").click(function() {
+          $("#tabinfo2").toggle();
+    });
+
+//$('button').css('height', $('button').parent('td').height());
+
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+    document.getElementById("defaultOpen2").click();
+    
+    // Date Picker
+    $(function(){
+        $('#datepicker').datepicker({
+            onSelect: function(dateText, inst) {
+                $("input[name='calendar']").val(dateText);
+            }
+        });
+    }); 
+    
+});
+</script>
+
+<script>
+// Open tabs for first row
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+// Open tabs for second row
+function openCity2(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent2");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks2");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+</script>
+
+</head>
+    
+<body>
+<table>
+    <tr>
+        <th>Data Field 1</th>
+        <th>Data Field 2</th>
+        <th>Data Field 3</th>
+    </tr>
+    <tr>
+        <td>
+            <div id="contain">
+              <button id="expand" type="button"> <h1>&#9656;</h1> </button>
+            </div>
+            <div id="dataf"> 
+                <h1> Data 1</h1> 
+                <p> some data here ..... <p> 
+            </div>
+        </td>
+        <td>
+            <div id="data"> 
+                <h1> Data 2</h1> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+            </div>
+        </td>
+        <td>
+            <div id="data"> 
+                <h1> Data 3</h1> 
+                <p> some data here ..... <p> 
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td id="tabinfo" colspan="3">
+            <ul class="tab">
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">London</a></li>
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Paris')">Paris</a></li>
+                <li><a href="javascript:void(0)" class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</a></li>
+            </ul>
+
+            <div id="London" class="tabcontent">
+                <h3>London</h3>
+                <div id="fullheight">
+                    <div id="field1">
+                        <p>London is the capital city of England. London is the capital city of England. London is the capital city of England. London is the capital city of England. London is the capital city of England. London is the capital city of England.</p>
+                    </div>
+                    <div id="field2">
+                        <h3>Form</h3>
+                        <form action="" id="form1" method="post">
+                            <span>Phone 1: </span>
+                            <input id="boxlen" type="text" name="num1" value="XXX-XXX-XXXX" required pattern="\d{3}-\d{3}-\d{4}"><br>
+                            <span>Phone 2: </span>
+                            <input id="boxlen" type="text" name="num2" value="XXX-XXX-XXXX" required pattern="\d{3}-\d{3}-\d{4}"><br>
+                            <span>Phone 3: </span>
+                            <input id="boxlen" type="text" name="num3" value="111-111-1111" required pattern="\d{3}-\d{3}-\d{4}"><br>
+                            <br>
+                            <div>Phone 4:</div>
+                            <input id="boxlen2" type="text" name="num4" value="XXX" required pattern="\d{3}">
+                            <span> - </span>
+                            <input id="boxlen2" type="text" name="num5" value="111" required pattern="\d{3}">
+                            <span> - </span>
+                            <input id="boxlen2" type="text" name="num6" value="XXXX" required pattern="\d{4}">
+                            <br><br>
+                            <input type="submit" value="Submit">
+                        </form>
+                    
+                </div>
+                <div id="field3">
+                    <img src="http://webneel.com/wallpaper/sites/default/files/images/04-2013/island-beach-scenery-wallpaper.preview.jpg" alt="pic">
+                </div>
+                </div>
+            </div>
+
+            <div id="Paris" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="Tokyo" class="tabcontent">
+                <h3>Tokyo</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div id="contain">
+                <button id="expand2" type="button"> <h1>&#9656;</h1> </button>
+            </div>
+            <div id="dataf"> 
+                <h1> Data 4</h1> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+                <p> some data here ..... <p> 
+            </div>
+        </td>
+        <td>
+            <div id="data"> 
+              <h1> Data 5</h1> 
+              <p> some data here ..... <p> 
+            </div>
+        </td>
+        <td>
+            <div id="data"> 
+                <h1> Data 6</h1> 
+                <p> some data here ..... <p> 
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td id="tabinfo2" colspan="3">
+            <ul class="tab">
+                <li><a href="javascript:void(0)" class="tablinks2" onclick="openCity2(event, 'London2')" id="defaultOpen2">London2</a></li>
+                <li><a href="javascript:void(0)" class="tablinks2" onclick="openCity2(event, 'Paris2')">Paris2</a></li>
+                <li><a href="javascript:void(0)" class="tablinks2" onclick="openCity2(event, 'Tokyo2')">Tokyo2</a></li>
+            </ul>
+
+            <div id="London2" class="tabcontent2">
+                <h3>London2</h3>
+                <p>London is the capital city of England.</p>
+            </div>
+
+            <div id="Paris2" class="tabcontent2">
+                <h3>Paris2</h3>
+                <p>Paris is the capital of France.</p>
+            </div>
+
+            <div id="Tokyo2" class="tabcontent2">
+                <h3>Tokyo2</h3>
+                <p>Tokyo is the capital of Japan.</p>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td> <div id="data"> <h1> Data </h1> </div> </td>
+        <td> <div id="data"> <h1> Data </h1> </div> </td>
+        <td>
+             <form action="" id="form2" method="post">
+                <h1> Date Picker </h1>
+                <div id="datecontain">
+                    <div id="picker">
+                        <div id="datepicker"></div>
+                    </div>
+                </div>
+                <input type="text" name="calendar" value="MM/DD/YYYY" />
+                <input type="submit" value="Submit">
+            </form>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
+
