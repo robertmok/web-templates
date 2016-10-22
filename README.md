@@ -78,3 +78,13 @@ A list of different rough web templates for testing and exploring.
 - some javascript code is replaced with jQuery
 - Ex. AJAX using jQuery, etc ... 
 
+---
+
+**temp10.html**
+- Grid application
+- expandable rows in grid
+- form validations
+- tabs in expandable rows
+- calendar with date picker
+- not mobile friendly
+- jQuery, jQuery UI, javascript, CSS3
